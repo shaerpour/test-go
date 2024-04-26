@@ -13,7 +13,8 @@ func main() {
 
 	r.HandleFunc("/api/v1/books/all", routes.GetAllBooks).Methods("GET")
 	r.HandleFunc("/api/v1/books/{id}", routes.GetBooksByID).Methods("GET")
-	r.HandleFunc("/api/v1/books/add", routes.AddNewBook).Methods("PUT")
+	r.HandleFunc("/api/v1/books/add", routes.AddNewBook).Methods("POST")
+	r.HandleFunc("/api/v1/books/edit", routes.EditBook).Methods("PUT")
 	r.HandleFunc("/api/v1/books/delete/{id}", routes.DeleteBook).Methods("DELETE")
 
 	fmt.Println("Running Server on port 8080")

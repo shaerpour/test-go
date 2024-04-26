@@ -46,6 +46,19 @@ func AddNewBook(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(BookList)
 }
 
+func EditBook(w http.ResponseWriter, r *http.Request) {
+	var NewBook Book
+
+	json.NewDecoder(r.Body).Decode(&NewBook)
+	for index, book := range BookList {
+		if book.ID == NewBook.ID {
+			BookList[index].Author = NewBook.Author
+			BookList[index].Name = NewBook.Name
+			json.NewEncoder(w).Encode(BookList[index])
+		}
+	}
+}
+
 func DeleteBook(w http.ResponseWriter, r *http.Request) {
 	book_id, _ := strconv.Atoi(mux.Vars(r)["id"])
 
